@@ -1,0 +1,28 @@
+---
+- name: install latest generic kernel headers / image
+  apt:
+    pkg: {{ item }}
+    state: present
+    update_cache: yes
+    cache_valid_time: 600
+  with_items:
+    - linux-headers-generic
+    - linux-image-generic
+  register: pkgs
+  until: pkgs|success
+
+- name: restart machine
+  command: shutdown -r now "Ansible kernel updates triggered"
+  async: 0
+  poll: 0
+  ignore_errors: yes
+
+- name: waiting for server to come back
+  local_action:
+    module: wait_for
+        host={{ ansible_ssh_host }}
+        port=22
+        delay=300
+        timeout=600
+        state=started
+  sudo: false

@@ -1,0 +1,55 @@
+---
+- name: Set product's repository directory
+  set_fact:
+    product_repo_dir: "/opt/{{ product }}"
+
+- name: Set OSA's repo directory
+  set_fact:
+    oa_repo_dir: "{{ product_repo_dir }}/openstack-ansible"
+  when: product == "rpc-openstack"
+
+- name: Set OSA's repo directory
+  set_fact:
+    oa_repo_dir: "{{ product_repo_dir }}"
+  when: product == "openstack-ansible"
+
+- name: Create OA configuration directory
+  file:
+    path: /etc/{{ config_prefix }}_deploy/
+    state: directory
+    mode: 0755
+
+- name: Copy OA configuration files
+  synchronize:
+    src: "{{ oa_repo_dir }}/etc/{{ config_prefix }}_deploy/"
+    dest: "/etc/{{ config_prefix }}_deploy"
+    recursive: yes
+    rsync_opts:
+      - "--ignore-existing"
+
+- name: Gather environment MD5
+  stat:
+    path: /etc/{{ config_prefix }}_deploy/{{ config_prefix }}_environment.yml
+  register: environment_version
+
+- name: Install user configuration file
+  template:
+    src: user_config.j2
+    dest: /etc/{{ config_prefix }}_deploy/{{ config_prefix }}_user_config.yml
+
+- name: Install user variables file
+  template:
+    src: user_variables.j2
+    dest: /etc/{{ config_prefix }}_deploy/user_variables.yml
+
+- name: Create passphrases file
+  file:
+    path: /etc/{{ config_prefix }}_deploy/user_secrets.yml
+    state: touch
+    owner: root
+    mode: 0644
+
+- name: Generate passphrases
+  command: "{{ oa_repo_dir }}/scripts/pw-token-gen.py --file /etc/{{ config_prefix }}_deploy/user_secrets.yml"
+  args:
+    creates: "/etc/{{ config_prefix }}_deploy/user_secrets.yml"

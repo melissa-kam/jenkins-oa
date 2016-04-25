@@ -1,0 +1,33 @@
+---
+ubuntu:
+  precise:
+    3.2:
+      headers:
+        - linux-headers-3.2.0-*
+        - linux-headers-3.2.0-*-generic
+      image:
+        - linux-image-3.2.0-*-generic
+    3.5:
+      headers:
+        - linux-headers-3.5.0-*
+        - linux-headers-3.5.0-*-generic
+      image:
+        - linux-image-3.5.0-*-generic
+    3.8:
+      headers:
+        - linux-headers-3.8.0-*
+        - linux-headers-3.8.0-*-generic
+      image:
+        - linux-image-3.8.0-*-generic
+    3.11:
+      headers:
+        - linux-headers-3.11.0-*
+        - linux-headers-3.11.0-*-generic
+      image:
+        - linux-image-3.11.0-*-generic
+    3.13:
+      headers:
+        - linux-headers-3.13.0-*
+        - linux-headers-3.13.0-*-generic
+      image:
+        - linux-image-3.13.0-*-generic
