@@ -72,4 +72,4 @@ PREFIX=/$NAME
 # --webroot=~/.jenkins/war
 # --prefix=$PREFIX
 
-JENKINS_SWARM_ARGS="-master http://${JENKINS_MASTER} -fsroot ${JENKINS_HOME} -name ${JENKINS_SLAVE} -username ${JENKINS_USERNAME} -password ${JENKINS_TOKEN}"
+JENKINS_SWARM_ARGS="-master http://${JENKINS_MASTER} -disableClientsUniqueId -fsroot ${JENKINS_HOME} -name ${JENKINS_SLAVE} -username ${JENKINS_USERNAME} -password ${JENKINS_TOKEN}"
