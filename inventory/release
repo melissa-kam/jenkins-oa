@@ -3,6 +3,7 @@
 [deployment:children]
 eng-iad3-lab02-deployment
 fcfs-iad3-lab03-deployment
+fcfs-iad3-lab06-deployment
 fcfs-iad3-storage01-deployment
 fcfs-iad3-storage04-deployment
 qe-iad3-lab01-deployment
@@ -14,6 +15,7 @@ sat6-full-deployment
 [infrastructure:children]
 eng-iad3-lab02-infrastructure
 fcfs-iad3-lab03-infrastructure
+fcfs-iad3-lab06-infrastructure
 fcfs-iad3-storage04-infrastructure
 qe-iad3-lab01-infrastructure
 qe-iad3-lab02-infrastructure
@@ -24,6 +26,7 @@ sat6-full-infrastructure
 [network:children]
 eng-iad3-lab02-network
 fcfs-iad3-lab03-network
+fcfs-iad3-lab06-network
 qe-iad3-lab01-network
 qe-iad3-lab02-network
 qe-iad3-lab03-network
@@ -33,6 +36,7 @@ sat6-full-network
 [compute:children]
 eng-iad3-lab02-compute
 fcfs-iad3-lab03-compute
+fcfs-iad3-lab06-compute
 qe-iad3-lab01-compute
 qe-iad3-lab02-compute
 qe-iad3-lab03-compute
@@ -42,6 +46,7 @@ sat6-full-compute
 [cinder:children]
 eng-iad3-lab02-cinder
 fcfs-iad3-lab03-cinder
+fcfs-iad3-lab06-cinder
 qe-iad3-lab01-cinder
 qe-iad3-lab02-cinder
 qe-iad3-lab03-cinder
@@ -68,6 +73,7 @@ sat6-full-haproxy
 [logger:children]
 eng-iad3-lab02-logger
 fcfs-iad3-lab03-logger
+fcfs-iad3-lab06-logger
 qe-iad3-lab01-logger
 qe-iad3-lab02-logger
 qe-iad3-lab03-logger
@@ -93,6 +99,14 @@ fcfs-iad3-lab03-compute
 fcfs-iad3-lab03-cinder
 fcfs-iad3-lab03-swift
 fcfs-iad3-lab03-logger
+
+[fcfs-iad3-lab06:children]
+fcfs-iad3-lab06-deployment
+fcfs-iad3-lab06-infrastructure
+fcfs-iad3-lab06-network
+fcfs-iad3-lab06-compute
+fcfs-iad3-lab06-cinder
+fcfs-iad3-lab06-logger
 
 [fcfs-iad3-storage01:children]
 fcfs-iad3-storage01-deployment
@@ -162,6 +176,7 @@ fcfs-syd2-lab01
 [virginia:children]
 eng-iad3-lab02
 fcfs-iad3-lab03
+fcfs-iad3-lab06
 fcfs-iad3-storage01
 fcfs-iad3-storage04
 qe-iad3-lab01
@@ -234,6 +249,34 @@ qe-iad3-lab02
 
 [fcfs-iad3-lab03-logger]
 605024-logging01
+
+
+# -------------------- FCFS-IAD3-LAB06 --------------------
+[fcfs-iad3-lab06-deployment]
+605033-infra01
+
+[fcfs-iad3-lab06-infrastructure]
+605033-infra01
+605034-infra02
+605036-infra03
+
+[fcfs-iad3-lab06-network]
+605033-infra01
+605034-infra02
+605036-infra03
+
+[fcfs-iad3-lab06-compute]
+605037-compute01
+605038-compute02
+605039-compute03
+
+[fcfs-iad3-lab06-cinder]
+605040-storage01
+605041-storage02
+605042-storage03
+
+[fcfs-iad3-lab06-logger]
+605035-logging01
 
 
 # -------------------- FCFS-IAD3-STORAGE01 --------------------
