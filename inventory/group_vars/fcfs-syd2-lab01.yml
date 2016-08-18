@@ -86,15 +86,9 @@ vgs:
     device:
       - /dev/sdb
       - /dev/sdc
-  - name: swift-volumes
-    device:
-      - /dev/sdd
-      - /dev/sde
-      - /dev/sdf
 
 # all swift configuration
 swift_config:
-    vg: swift-volumes
     part_power: 8
     weight: 100
     repl_number: 3
@@ -103,11 +97,9 @@ swift_config:
     storage_network: 'br-storage'
     replication_network: 'br-repl'
     drives:
-      - name: swift1
-      - name: swift2
-      - name: swift3
-      - name: swift4
-      - name: swift5
+      - name: sdd
+      - name: sde
+      - name: sdf
     lv_size: 50G
     mount_point: /mnt
     mount_opts: 'noatime,nodiratime,nobarrier,logbufs=8,nobootwait'
