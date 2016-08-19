@@ -74,6 +74,8 @@ chmod 755 /etc/init.d/jenkins-slave
 mkdir -p /opt/jenkins-slave/
 chown -R jenkins:jenkins /opt/jenkins-slave/
 
+grep -q "jenkins ALL=(ALL) NOPASSWD: ALL" "/etc/sudoers" || echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> "/etc/sudoers"
+
 if [[ ! -e /opt/jenkins-slave/swarm-client-${SWARM_VERSION}-jar-with-dependencies.jar ]]; then
     pushd "${JENKINS_HOME}"
     curl -O $JENKINS_SWARM_URL
