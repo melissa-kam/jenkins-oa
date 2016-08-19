@@ -2,8 +2,8 @@
 - name: Copy RPC rpcd/etc configuration files
   shell: "cp {{ product_repo_dir }}/rpcd/etc/{{ config_prefix }}_deploy/{{ item }} /etc/{{ config_prefix }}_deploy/"
   with_items:
-    - user_extras_secrets.yml
-    - user_extras_variables.yml
+    - user_rpco_secrets.yml
+    - user_rpco_variables_defaults.yml
 
 - name: Copy RPC rpcd/env.d variable files
   shell: "cp {{ product_repo_dir }}/rpcd/etc/{{ config_prefix }}_deploy/env.d/* /etc/{{ config_prefix }}_deploy/env.d/"
