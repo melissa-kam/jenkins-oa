@@ -1,4 +1,6 @@
 ---
+lab_name: fcfs-iad3-storage01
+
 networking:
   - name: lo
     type: loopback

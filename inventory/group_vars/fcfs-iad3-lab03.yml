@@ -1,4 +1,5 @@
 ---
+lab_name: fcfs-iad3-lab03
 config_prefix: openstack
 repo_dir: openstack-ansible
 

@@ -1,4 +1,5 @@
 ---
+lab_name: eng-iad3-lab02
 config_prefix: openstack
 repo_dir: openstack-ansible
 

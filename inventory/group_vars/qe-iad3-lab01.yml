@@ -1,4 +1,5 @@
 ---
+lab_name: qe-iad3-lab01
 config_prefix: openstack
 repo_dir: rpc-openstack
 rpc_ceph: true
