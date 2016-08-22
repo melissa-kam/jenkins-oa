@@ -1,4 +1,5 @@
 ---
+lab_name: fcfs-syd2-lab01
 config_prefix: openstack
 repo_dir: openstack-ansible
 

@@ -1,5 +1,6 @@
 ---
 # Repo Config
+lab_name: sat6-full-ceph
 config_prefix: openstack
 repo_dir: openstack_repo
 razor_url: http://10.127.101.82:8080/api

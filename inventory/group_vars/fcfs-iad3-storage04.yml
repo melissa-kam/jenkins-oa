@@ -1,4 +1,5 @@
 ---
+lab_name: fcfs-iad3-storage04
 config_prefix: openstack
 repo_dir: openstack-ansible
 standalone_swift: true
