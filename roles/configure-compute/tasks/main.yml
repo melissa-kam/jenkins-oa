@@ -27,6 +27,13 @@
     rsync_opts:
       - "--ignore-existing"
 
+- name: Copy OA secrets file
+  synchronize:
+    src: "{{ oa_repo_dir }}/etc/{{ config_prefix }}_deploy/user_secrets.yml"
+    dest: "/etc/{{ config_prefix }}_deploy/user_osa_secrets.yml"
+    rsync_opts:
+      - "--ignore-existing"
+
 - name: Install user configuration file
   template:
     src: user_config.j2
