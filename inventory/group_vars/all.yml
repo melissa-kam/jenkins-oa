@@ -2,3 +2,4 @@
 ansible_ssh_user: root
 config_prefix: openstack
 repo_dir: openstack-ansible
+enable_interfaces: True
