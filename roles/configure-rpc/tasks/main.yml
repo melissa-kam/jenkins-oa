@@ -1,17 +1,42 @@
 ---
+- name: Set product's repository directory
+  set_fact:
+    product_repo_dir: "/opt/{{ product }}"
+
+- name: Set OSA's repo directory
+  set_fact:
+    oa_repo_dir: "{{ product_repo_dir }}/openstack-ansible"
+  when: product == "rpc-openstack"
+
+- name: Set OSA's repo directory
+  set_fact:
+    oa_repo_dir: "{{ product_repo_dir }}"
+  when: product == "openstack-ansible"
+
+- name: Create OA environment directory
+  file:
+    path: /etc/{{ config_prefix }}_deploy/env.d
+    state: directory
+    mode: 0755
+
 - name: Copy RPC rpcd/etc configuration files
-  shell: "cp {{ product_repo_dir }}/rpcd/etc/{{ config_prefix }}_deploy/{{ item }} /etc/{{ config_prefix }}_deploy/"
-  with_items:
-    - user_rpco_secrets.yml
-    - user_rpco_variables_defaults.yml
+  shell: "cp -r {{ product_repo_dir }}/rpcd/etc/{{ config_prefix }}_deploy/* /etc/{{ config_prefix }}_deploy/"
 
-- name: Copy RPC rpcd/env.d variable files
-  shell: "cp {{ product_repo_dir }}/rpcd/etc/{{ config_prefix }}_deploy/env.d/* /etc/{{ config_prefix }}_deploy/env.d/"
+- name: Copy OA environment files
+  shell: "cp -r {{ oa_repo_dir }}/etc/{{ config_prefix }}_deploy/env.d/* /etc/{{ config_prefix }}_deploy/env.d/"
 
-- name: Copy RPC rpcd/conf.d configuration files
-  shell: "cp {{ product_repo_dir }}/rpcd/etc/{{ config_prefix }}_deploy/conf.d/* /etc/{{ config_prefix }}_deploy/conf.d/"
+- name: Copy OA secrets file
+  shell: "cp -r {{ oa_repo_dir }}/etc/{{ config_prefix }}_deploy/user_secrets.yml /etc/{{ config_prefix }}_deploy/user_osa_secrets.yml"
 
-- name: Merge RPC user_varibles.yml file with OSA user_variables.yml file
-  shell: "{{ product_repo_dir }}/scripts/update-yaml.py /etc/{{ config_prefix }}_deploy/{{ item }} {{ product_repo_dir }}/rpcd/etc/{{ config_prefix }}_deploy/{{ item }}"
-  with_items:
-    - user_variables.yml
+- name: Install user variables file
+  template:
+    src: user_osa_variables_overrides.j2
+    dest: /etc/{{ config_prefix }}_deploy/user_osa_variables_overrides.yml
+
+- name: Install user configuration file
+  template:
+    src: user_config.j2
+    dest: /etc/{{ config_prefix }}_deploy/{{ config_prefix }}_user_config.yml
+
+- name: Generate passphrases
+  command: "{{ oa_repo_dir }}/scripts/pw-token-gen.py --file /etc/{{ config_prefix }}_deploy/user_osa_secrets.yml"

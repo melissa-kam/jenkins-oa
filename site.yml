@@ -20,16 +20,15 @@
 
 - hosts: deployment
   tags:
-    - prepare
-  roles:
-    - configure-compute
-    - configure-swift
-
-- hosts: deployment
-  tags:
     - rpc-openstack
   roles:
     - { role: configure-rpc, when: product == "rpc-openstack" }
+
+- hosts: deployment
+  tags:
+    - prepare
+  roles:
+    - configure-swift
 
 - hosts: deployment
   tags:
