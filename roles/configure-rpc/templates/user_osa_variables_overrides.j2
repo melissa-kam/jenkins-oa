@@ -19,6 +19,21 @@ neutron_plugin_base:
   - neutron.services.metering.metering_plugin.MeteringPlugin
   - neutron_lbaas.services.loadbalancer.plugin.LoadBalancerPluginv2
 
+{% if tempest_public_provider_net is defined %}
+tempest_public_net_provider_type: "{{ tempest_public_provider_net.tempest_public_net_provider_type }}"
+tempest_public_net_physical_type: "{{ tempest_public_provider_net.tempest_public_net_physical_type }}"
+tempest_public_net_seg_id: "{{ tempest_public_provider_net.tempest_public_net_seg_id }}"
+tempest_public_router_external: "{{ tempest_public_provider_net.tempest_public_router_external }}"
+tempest_public_subnet_cidr: "{{ tempest_public_provider_net.tempest_public_subnet_cidr }}"
+tempest_public_subnet_gateway: "{{ tempest_public_provider_net.tempest_public_subnet_gateway }}"
+{% endif %}
+
+{% if tempest_private_net %}
+tempest_private_subnet_cidr: "{{ tempest_private_net.tempest_private_subnet_cidr }}"
+tempest_private_net_provider_type: "{{ tempest_private_net.tempest_private_net_provider_type }}"
+tempest_private_net_seg_id: "{{ tempest_private_net.tempest_private_net_seg_id }}"
+{% endif %}
+
 {% if standalone_swift is defined %}
 tempest_service_available_cinder: False
 tempest_service_available_glance: False
