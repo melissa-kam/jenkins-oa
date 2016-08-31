@@ -68,7 +68,7 @@ user_config:
 
 # tempest net config
 tempest_public_provider_net:
-  tempest_public_subnet_cidr: "10.127.101.128/29"
+  tempest_public_subnet_cidr: "10.127.101.128/25"
   tempest_public_subnet_gateway: "10.127.101.129"
   tempest_public_net_provider_type: vlan 
   tempest_public_net_physical_type: vlan
