@@ -66,6 +66,20 @@ user_config:
           - nova_compute
           - swift_proxy
 
+# tempest net config
+tempest_public_provider_net:
+  tempest_public_subnet_cidr: "10.127.101.128/29"
+  tempest_public_subnet_gateway: "10.127.101.129"
+  tempest_public_net_provider_type: vlan 
+  tempest_public_net_physical_type: vlan
+  tempest_public_net_seg_id: 2010
+  tempest_public_router_external: True
+
+tempest_private_net:
+  tempest_private_subnet_cidr: "192.168.1.0/24"
+  tempest_private_net_provider_type: "vxlan"
+  tempest_private_net_seg_id: 1
+
 # Volume Group Config
 vgs:
   - name: cinder-volume-ssd
