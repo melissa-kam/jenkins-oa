@@ -81,6 +81,19 @@ user_config:
           - cidr: "192.168.1.0/24"
             gateway: "192.168.3.1"
 
+tempest_public_provider_net:
+  tempest_public_subnet_cidr: "10.239.0.0/22"
+  tempest_public_subnet_gateway: "10.239.0.1"
+  tempest_public_net_provider_type: vlan
+  tempest_public_net_physical_type: vlan
+  tempest_public_net_seg_id: 613
+  tempest_public_router_external: True
+
+tempest_private_net:
+  tempest_private_subnet_cidr: "172.31.0.0/24"
+  tempest_private_net_provider_type: "vxlan"
+  tempest_private_net_seg_id: 1
+
 vgs:
   - name: cinder-volumes
     device:
