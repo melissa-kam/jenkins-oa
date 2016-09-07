@@ -96,11 +96,11 @@ cinder_storage:
   backends:
     lvm:
       volume_group: cinder-volume-hdd
-      volume_driver: cinder.volume.drivers.lvm.LVMISCSIDriver
+      volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
       volume_backend_name: LVM_iSCSI
     lvm_ssd:
       volume_group: cinder-volume-ssd
-      volume_driver: cinder.volume.drivers.lvm.LVMISCSIDriver
+      volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
       volume_backend_name: LVM_iSCSISSD
 
 # Swift Config
