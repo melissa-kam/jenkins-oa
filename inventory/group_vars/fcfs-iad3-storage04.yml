@@ -69,11 +69,9 @@ swift_config:
   storage_network: 'br-storage'
   replication_network: 'br-repl'
   drives:
-    - name: swift1
-    - name: swift2
-    - name: swift3
-    - name: swift4
-    - name: swift5
+    - name: sdb
+    - name: sdc
+    - name: sdd
   lv_size: 50G
   mount_point: /mnt
   mount_opts: 'noatime,nodiratime,nobarrier,logbufs=8,nobootwait'
@@ -191,11 +189,3 @@ networking:
       - "address {{ ansible_em3.ipv4.address }}"
       - "netmask {{ ansible_em3.ipv4.netmask }}"
       - "post-up ip route add 10.191.192.0/18 via 10.136.157.225 dev em3"
-
-# volume groups for cinder / swift
-vgs:
-  - name: swift-volumes
-    device:
-      - /dev/sdb
-      - /dev/sdc
-      - /dev/sdd
