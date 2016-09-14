@@ -20,12 +20,7 @@
     mode: 0755
 
 - name: Copy OA configuration files
-  synchronize:
-    src: "{{ oa_repo_dir }}/etc/{{ config_prefix }}_deploy/"
-    dest: "/etc/{{ config_prefix }}_deploy"
-    recursive: yes
-    rsync_opts:
-      - "--ignore-existing"
+  shell: "cp -r {{ oa_repo_dir }}/etc/{{ config_prefix }}_deploy/* /etc/{{ config_prefix }}_deploy/"
 
 - name: Gather environment MD5
   stat:
