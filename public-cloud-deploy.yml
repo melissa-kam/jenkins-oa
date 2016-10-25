@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - name: Provision a set of instances
+    local_action:
+        module: rax
+        name: "{{ rax_name }}"
+        flavor: "{{ rax_flavor }}"
+        image: "{{ rax_image }}"
+        count: "{{ rax_count }}"
+        key_name: "mkam-pub"
+        group: "{{ group }}"
+        wait: yes
+    register: rax

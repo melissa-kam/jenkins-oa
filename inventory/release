@@ -476,3 +476,8 @@ node121
 
 [sat6-full-logger]
 node101
+
+
+# =================== JENKINS ===================
+[localhost]
+localhost ansible_connection=local ansible_python_interpreter=python
