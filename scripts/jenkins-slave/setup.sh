@@ -38,12 +38,12 @@ if [ -z "$JENKINS_SLAVE" ]; then
 fi
 
 if [ -z "$JENKINS_USERNAME" ]; then
-    echo "Enter the Jenkins username: "
+    echo "Enter your GitHub username: "
     read -r JENKINS_USERNAME
 fi
 
 if [ -z "$JENKINS_TOKEN" ]; then
-    echo "Enter the Jenkins slave secret: "
+    echo "Enter your GitHub personal authentication token: "
     read -rs JENKINS_TOKEN
 fi
 
