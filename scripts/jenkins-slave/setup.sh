@@ -9,10 +9,6 @@ export JENKINS_HOME="/opt/jenkins-slave"
 export SWARM_VERSION="2.1"
 export JENKINS_SWARM_URL="http://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_VERSION}/swarm-client-${SWARM_VERSION}-jar-with-dependencies.jar"
 
-export JENKINS_SLAVE=""
-export JENKINS_USERNAME=""
-export JENKINS_TOKEN=""
-
 function print_info {
   PROC_NAME="- [ $* ] -"
   printf "\n%s%s\n" "$PROC_NAME" "${LINE:${#PROC_NAME}}"
