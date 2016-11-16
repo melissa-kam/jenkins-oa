@@ -82,7 +82,7 @@ Example: /opt/jenkins-oa/, {0}
 
     devices = [Device(number) for number in devices]
     for device in devices:
-        with open('host_vars/{0}.yml'.format(device.hostname), 'w') as fp:
+        with open('inventory/host_vars/{0}.yml'.format(device.hostname), 'w') as fp:
             if any(name in device.hostname for name in ['storage', 'swift']):
                 click.echo('Device hostname: {0}'.format(device.hostname))
                 zone = click.prompt('Zone number')
