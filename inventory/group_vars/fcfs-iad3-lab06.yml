@@ -66,7 +66,7 @@ user_config:
 tempest_public_provider_net:
   tempest_public_subnet_cidr: "10.16.84.0/24"
   tempest_public_subnet_gateway: "10.16.84.1"
-  tempest_public_net_provider_type: vlan 
+  tempest_public_net_provider_type: vlan
   tempest_public_net_physical_type: vlan
   tempest_public_net_seg_id: 235
   tempest_public_router_external: True
@@ -188,4 +188,5 @@ networking:
 # volume groups for cinder / swift
 vgs:
     - name: cinder-volumes
-      device: /dev/sdb
+      device:
+        - /dev/sdb
