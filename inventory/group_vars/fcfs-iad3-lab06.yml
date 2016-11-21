@@ -76,6 +76,32 @@ tempest_private_net:
   tempest_private_net_provider_type: "vxlan"
   tempest_private_net_seg_id: 1
 
+# all swift configuration
+swift_config:
+  part_power: 8
+  weight: 100
+  min_part_hours: 1
+  repl_number: 3
+  region: 1
+  storage_network: 'br-storage'
+  replication_network: 'br-storage'
+  drives:
+    - name: sdc
+    - name: sdd
+  lv_size: 50G
+  mount_point: /mnt
+  account: "service:glance"
+  mount_opts: 'noatime,nodiratime,nobarrier,logbufs=8,nobootwait'
+  container: glance
+  storage_policies:
+    - name: gold
+      index: 0
+      default: True
+    - name: silver
+      index: 1
+      repl_number: 3
+      depreciated: True
+
 # cinder configuration
 cinder_storage:
   backends:
