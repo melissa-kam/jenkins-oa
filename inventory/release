@@ -60,6 +60,7 @@ sat6-full-ceph
 [swift:children]
 eng-iad3-lab02-swift
 fcfs-iad3-lab03-swift
+fcfs-iad3-lab06-swift
 fcfs-iad3-storage04-swift
 qe-iad3-lab01-swift
 qe-iad3-lab02-swift
@@ -106,6 +107,7 @@ fcfs-iad3-lab06-infrastructure
 fcfs-iad3-lab06-network
 fcfs-iad3-lab06-compute
 fcfs-iad3-lab06-cinder
+fcfs-iad3-lab06-swift
 fcfs-iad3-lab06-logger
 
 [fcfs-iad3-storage01:children]
@@ -271,6 +273,11 @@ qe-iad3-lab02
 605039-compute03
 
 [fcfs-iad3-lab06-cinder]
+605040-storage01
+605041-storage02
+605042-storage03
+
+[fcfs-iad3-lab06-swift]
 605040-storage01
 605041-storage02
 605042-storage03

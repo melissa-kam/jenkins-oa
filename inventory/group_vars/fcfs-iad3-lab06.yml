@@ -84,7 +84,6 @@ swift_config:
   repl_number: 3
   region: 1
   storage_network: 'br-storage'
-  replication_network: 'br-storage'
   drives:
     - name: sdc
     - name: sdd
