@@ -2,13 +2,13 @@
   - name: Wait for SSH to be available on host
     wait_for: port=22 host="{{ ansible_host }}"
 
-  - name: Download RPC QE public keys
-    get_url:
-      url: https://raw.githubusercontent.com/rcbops-qe/jenkins-oa/master/keys/rcb.keys
-      dest: ~/.ssh/rcb.keys
+  - name: Copy RPC QE public keys
+    copy:
+      src: ../../../keys/rcb.keys
+      dest: /root/.ssh/rcb.keys
 
   - name: Add RPC QE public keys to authorized_keys
-    shell: cat ~/.ssh/rcb.keys >> ~/.ssh/authorized_keys
+    shell: cat /root/.ssh/rcb.keys >> /root/.ssh/authorized_keys
 
   - name: Install Git
     apt:
@@ -16,12 +16,10 @@
       state: installed
       update_cache: yes
 
-  - name: Download repository with swarm script
-    git:
-      repo: https://github.com/rcbops-qe/jenkins-oa.git
-      version: master
+  - name: Copy swarm script
+    copy:
+      src: ../../../scripts
       dest: /root/jenkins-oa
-      force: yes
 
   - name: Run setup slave script
     environment:
