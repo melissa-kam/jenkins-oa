@@ -1,0 +1,19 @@
+---
+  - name: Provision a set of public cloud instances
+    local_action:
+        module: rax
+        name: "{{ name }}"
+        flavor: "{{ flavor }}"
+        image: "{{ image }}"
+        count: "{{ count }}"
+        key_name: "{{ key_name }}"
+        group: "{{ group }}"
+        wait: yes
+        wait_timeout: 900
+        auto_increment: no
+    register: rax
+
+  - name: Show created instances
+    debug: msg=" {{ item.name }} {{ item.id }} {{ item.accessIPv4 }}"
+    with_items: "{{ rax.success }}"
+    when: rax.action == 'create'

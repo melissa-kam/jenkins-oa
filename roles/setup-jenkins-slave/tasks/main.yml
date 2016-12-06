@@ -1,0 +1,41 @@
+---
+  - name: Wait for SSH to be available on host
+    wait_for: port=22 host="{{ ansible_host }}"
+
+  - name: Copy RPC QE public keys
+    copy:
+      src: ../../../keys/rcb.keys
+      dest: /root/.ssh/rcb.keys
+
+  - name: Add RPC QE public keys to authorized_keys
+    shell: cat /root/.ssh/rcb.keys >> /root/.ssh/authorized_keys
+
+  - name: Install Git
+    apt:
+      pkg: git
+      state: installed
+      update_cache: yes
+
+  - name: Copy swarm script
+    copy:
+      src: ../../../scripts
+      dest: /root/jenkins-oa
+
+  - name: Ensure swarm script is executable
+    file:
+      path: /root/jenkins-oa/scripts/jenkins-slave/setup.sh
+      mode: 775
+
+  - name: Run setup slave script
+    environment:
+      JENKINS_SLAVE: "{{ slave_name }}"
+      JENKINS_USERNAME: "{{ github_username }}"
+      JENKINS_TOKEN: "{{ github_token }}"
+    shell: ./scripts/jenkins-slave/setup.sh
+    args:
+        executable: /bin/bash
+        chdir: /root/jenkins-oa/
+    register: result
+
+  - name: Readable output of setup slave script
+    debug: var=result.stdout.split('\n')
