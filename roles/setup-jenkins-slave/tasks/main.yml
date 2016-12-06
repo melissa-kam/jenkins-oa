@@ -21,6 +21,11 @@
       src: ../../../scripts
       dest: /root/jenkins-oa
 
+  - name: Ensure swarm script is executable
+    file:
+      path: /root/jenkins-oa/scripts/jenkins-slave/setup.sh
+      mode: 775
+
   - name: Run setup slave script
     environment:
       JENKINS_SLAVE: "{{ slave_name }}"
