@@ -1,0 +1,19 @@
+---
+- name: Create entities for each host
+  local_action:
+      module: rax_mon_entity
+      state: present
+      label: "{{ item }}.{{ server_name }}"
+  with_items:
+    - cinder1
+    - cinder2
+    - compute2
+    - infra1
+    - infra2
+    - logging1
+    - infra3
+    - swift1
+    - swift3
+    - swift2
+    - compute1
+    - loadbalancer1
