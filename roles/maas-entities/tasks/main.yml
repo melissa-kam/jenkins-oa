@@ -1,0 +1,7 @@
+---
+- name: Create or delete entities for each host
+  local_action:
+      module: rax_mon_entity
+      state: "{{ state }}"
+      label: "{{ item }}"
+  with_items: "{{ entity_labels }}"
